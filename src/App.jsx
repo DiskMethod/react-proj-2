@@ -12,10 +12,18 @@ function App() {
     });
   };
 
+  const removeUserHandler = (id) => {
+    setUsers((prevUsers) => {
+      return prevUsers.filter((user) => user.id.toString() !== id);
+    });
+  };
+
   return (
     <>
       <AddUser onAddUser={addUserHandler} />
-      <UsersList users={users} />
+      {users.length && (
+        <UsersList users={users} onRemoveUser={removeUserHandler} />
+      )}
     </>
   );
 }
